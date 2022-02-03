@@ -1,0 +1,9 @@
+# Ignore userspace code and docs
+__*
+
+# Ignore dependencies & artifacts
+/node_modules/
+/dist/
+
+# Ignore logs
+*.log

@@ -1,0 +1,24 @@
+{
+  "name": "code-analysis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@octantis/option": "^1.1.0",
+    "fast-glob": "^3.2.11",
+    "reflect-metadata": "^0.1.13",
+    "tree-sitter": "^0.20.0",
+    "tree-sitter-typescript": "^0.19.0",
+    "ts-entry-point": "^1.0.2",
+    "typedi": "^0.10.0"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "ts-node resources/spec/arch.spec.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.13",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  }
+}

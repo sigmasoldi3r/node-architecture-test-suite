@@ -6,7 +6,8 @@
     "outDir": "dist",
     "downlevelIteration": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "strictNullChecks": true
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*.ts"]

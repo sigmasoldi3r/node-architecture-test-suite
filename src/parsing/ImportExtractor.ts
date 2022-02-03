@@ -1,14 +1,17 @@
 import { none, option, some } from '@octantis/option'
 import * as Parser from 'tree-sitter'
 import { Service } from 'typedi'
-
-export interface ImportData {
-  references: string[]
-  path: string
-}
+import DependencyExtractor from './DependencyExtractor'
+import ImportData from './ImportData'
 
 @Service()
-export default class ImportExtractor {
+export default class ImportExtractor implements DependencyExtractor {
+  getDependencies(ast: Parser.Tree): ImportData[] {
+    return ast.rootNode.children
+      .filter(this.onlyImportStatements)
+      .map(this.asImportData.bind(this))
+  }
+
   private onlyImportStatements(node: Parser.SyntaxNode) {
     return node.type === 'import_statement'
   }
@@ -43,11 +46,5 @@ export default class ImportExtractor {
       references: this.collectReferences(children[0]).get(),
       path: route.text.slice(1, -1),
     }
-  }
-
-  getImports(ast: Parser.Tree): ImportData[] {
-    return ast.rootNode.children
-      .filter(this.onlyImportStatements)
-      .map(this.asImportData.bind(this))
   }
 }

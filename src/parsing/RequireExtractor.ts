@@ -10,10 +10,10 @@ export default class RequireExtractor implements DependencyExtractor {
     return this.collectRequires(ast.rootNode)
   }
 
-  private extractRequireData(node: Parser.SyntaxNode): ImportData {
+  private extractRequireData(node: Parser.SyntaxNode): option<ImportData> {
     const declare = node.children[1]
     // return { path }
-    throw ''
+    return none()
   }
 
   private getStatementBlock(
@@ -30,7 +30,9 @@ export default class RequireExtractor implements DependencyExtractor {
     const out: ImportData[] = []
     for (const child of node.children) {
       if (child.type === 'lexical_declaration') {
-        out.push(this.extractRequireData(child))
+        for (const data of this.extractRequireData(child)) {
+          out.push(data)
+        }
       } else if (child.type === 'function_declaration') {
         const block = this.getStatementBlock(child).get()
         out.push(...this.collectRequires(block))

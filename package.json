@@ -2,7 +2,10 @@
   "name": "code-analysis",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "license": "GPL-3.0",
   "dependencies": {
     "@octantis/option": "^1.1.0",
     "fast-glob": "^3.2.11",
